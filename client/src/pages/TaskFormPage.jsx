@@ -10,11 +10,22 @@ export default function TaskFormPage() {
   } = useForm();
   const navigate = useNavigate();
   const params = useParams();
+
   const onSubmit = handleSubmit(async (data) => {
     const res = await createTask(data);
     navigate("/tasks");
   });
 
+  const handleDelete= async()=>{
+    const accepted = window.confirm("Esta segudo que desea eliminar?")
+    if (accepted){
+      await deleteTask(params.id)
+      navigate("/tasks")
+    }
+  }
+
+
+  
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -32,20 +43,8 @@ export default function TaskFormPage() {
         {errors.description && <span>description is required</span>}
         <button>Save</button>
       </form>
-      
-      {params.id && (
-        <button
-          onClick={async () => {
-            const accepted = window.confirm("Are you sure?");
-            if (accepted) {
-              await deleteTask(params.id);
-              navigate("/tasks");
-            }
-          }}
-        >
-          Delete
-        </button>
-      )}
+
+      {params.id && (<button onClick={handleDelete}>Delete</button>)}
     </div>
   );
 }

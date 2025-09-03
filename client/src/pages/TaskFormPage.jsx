@@ -75,20 +75,20 @@ export default function TaskFormPage() {
       <form onSubmit={onSubmit}>
         <input
           type="text"
-          placeholder="title"
+          placeholder="Titulo"
           {...register("title", { required: true })}
           className="bg-zinc-700 rounded-lg block w-full mb-3"
         />
-        {errors.title && <span>title is required</span>}
+        {errors.title && <span>El título es requerido</span>}
         <textarea
           rows="3"
-          placeholder="description"
+          placeholder="Descripción"
           {...register("description", { required: true })}
           className="bg-zinc-700 rounded-lg block w-full mb-3"
         ></textarea>
-        {errors.description && <span>description is required</span>}
+        {errors.description && <span>La descripcion es requerida</span>}
           <button className="bg-indigo-500 p-2 rounded-lg block w-full mt-3">
-            Save
+            Guardar
           </button>
       </form>
 
@@ -98,7 +98,7 @@ export default function TaskFormPage() {
           className="bg-red-500 p-2 rounded-lg w-48 mt-3"
           onClick={handleDelete}
         >
-          Delete
+          Eliminar
         </button>
       )}
         </div>
